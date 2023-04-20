@@ -6,8 +6,10 @@ import { FiSettings } from 'react-icons/fi'
 import { Navbar, Footer, Sidebar, ThemeSettings } from './components';
 import { Ecommerce, Orders, Calendar, Employee, Stacked, Pyramid, Customer, Kanban, Line, Area, Bar, Pie, Financial, ColorPicker, ColorMapping, Editor } from './pages'
 
+import { useStateContext } from './contexts/ContextProvide'
+
 const App = () => {
-  const activeMenu = true;
+  const { activeMenu } = useStateContext();
   return (
     <div>
       <BrowserRouter >
@@ -30,11 +32,11 @@ const App = () => {
             <div className='w-72 fixed sidebar
             dark:bg-secondary-dark-bg
             bg-white'>
-              <Sidebar />
+              <Sidebar activeMenu={activeMenu}/>
             </div>: 
             <div className='w-0
             dark:bg-secondary-dark-bg'>
-              <Sidebar />
+              <Sidebar activeMenu={activeMenu}/>
             </div>
           }
           <div className={`dark:bg-main-bg bg-main-bg min-h-screen w-full ${activeMenu? 'md:ml-72':'flex-2'}`}>
@@ -44,7 +46,7 @@ const App = () => {
           </div>
           <div>
             <Routes >
-              {/* {< />} */}
+
               {/* Dashboard */}
               <Route path='/' element={<Ecommerce />}/>
               <Route path='/ecommerce' element={<Ecommerce />}/>
